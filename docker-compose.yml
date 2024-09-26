@@ -1,0 +1,19 @@
+services: #servicios que se van a correr
+  postgres: #nombre del servicio
+    image: postgres:latest
+    ports:
+      - 5432:5432  # 5432 puerto del host: 5432 puerto de escucha del contenedor
+    environment:
+      POSTGRES_DB: tec4good #nombre base de datos
+      POSTGRES_USER: root #usuario de la base de datos
+      POSTGRES_PASSWORD: admin123 #contraseña de la base de datos
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data # volumenes para la persistencia de dato
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@mail.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - 5050:80
